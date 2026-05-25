@@ -2,22 +2,35 @@
 <html>
 
 <head>
-    <title>Module 01 Activity</title>
+    <title>Assignment 2</title>
 </head>
 
 <body>
 
-    <h1>Welcome to My Webpage!</h1>
-
-    <p>Writing to the webpage with JavaScript.</p>
-
-    <p>
-        To view console output, press Ctrl + Shift + I,
-        then click the Console tab.
-    </p>
-
     <script>
-        console.log("Writing to the console with JavaScript.");
+
+        // Ask for user's first name
+        let Fname = prompt("Enter your first name:");
+
+        // Store Pi value
+        const piValue = 3.1415926;
+
+        // Ask for favorite number
+        let myFavNum = prompt("Enter your favorite number:");
+
+        // Calculate circle area
+        let myArea = piValue * (myFavNum * myFavNum);
+
+        // Display results
+        document.write("Hello " + Fname + ".<br><br>");
+
+        document.write("Your favorite number is " + myFavNum + ".<br><br>");
+
+        document.write("The value of Pi is " + piValue + ".<br><br>");
+
+        document.write("If that was the radius of a circle, the area would be "
+            + myArea + ".");
+
     </script>
 
 </body>
