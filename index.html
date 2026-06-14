@@ -2,34 +2,55 @@
 <html>
 
 <head>
-    <title>Assignment 2</title>
+    <title>Week 3 JavaScript Loops and Arrays</title>
 </head>
 
 <body>
 
+    <h1>Week 3 JavaScript Loops and Arrays</h1>
+
     <script>
 
-        // Ask for user's first name
-        let Fname = prompt("Enter your first name:");
+        // For loop that counts from 0 to 10 and checks odd or even
+        document.write("<h2>Odd and Even Numbers</h2>");
 
-        // Store Pi value
-        const piValue = 3.1415926;
+        for (let count = 0; count <= 10; count++) {
+            if (count % 2 === 0) {
+                document.write("Count " + count + " is even<br>");
+            } else {
+                document.write("Count " + count + " is odd<br>");
+            }
+        }
 
-        // Ask for favorite number
-        let myFavNum = prompt("Enter your favorite number:");
+        // Ask user for a number between 5 and 20
+        let myNum = prompt("Enter a number between 5 and 20:");
 
-        // Calculate circle area
-        let myArea = piValue * (myFavNum * myFavNum);
+        // Convert user input into a number
+        myNum = parseInt(myNum);
 
-        // Display results
-        document.write("Hello " + Fname + ".<br><br>");
+        // Do While loop that counts from 1 until it equals myNum
+        document.write("<h2>Do While Loop</h2>");
 
-        document.write("Your favorite number is " + myFavNum + ".<br><br>");
+        let loopCounter = 1;
 
-        document.write("The value of Pi is " + piValue + ".<br><br>");
+        do {
+            document.write("Loop counter is " + loopCounter + "<br>");
+            loopCounter++;
+        } while (loopCounter <= myNum);
 
-        document.write("If that was the radius of a circle, the area would be "
-            + myArea + ".");
+        // Store subjects in an array
+        let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+
+        // Display array values using forEach()
+        document.write("<h2>Subjects Displayed with forEach()</h2>");
+
+        subjects.forEach(function(subject) {
+            document.write(subject + "<br>");
+        });
+
+        // Display array values separated by commas using one statement
+        document.write("<h2>Subjects Separated by Commas</h2>");
+        document.write(subjects.join(", "));
 
     </script>
 
