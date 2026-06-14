@@ -2,42 +2,18 @@
 <html>
 
 <head>
-    <title>Week 5 JavaScript Objects</title>
+    <title>Week 6 JavaScript Dog Objects</title>
 </head>
 
 <body>
 
-    <h1>Week 5 JavaScript Objects</h1>
+    <h1>Week 6 JavaScript Dog Objects</h1>
 
     <script>
-
-        // Create a literal object using information
-        // about a fictional dog from animated television.
-        let myDog = {
-
-            name: "Courage",
-            breed: "Beagle",
-            tvShow: "Courage the Cowardly Dog",
-            notes: "A nervous dog who constantly protects his owners from strange creatures and dangers.",
-            mySound: "I may be scared of everything, but I will still protect my family."
-
-        };
-
-        // Display the values stored in the object literal.
-        document.write("<h2>Dog Object Literal</h2>");
-
-        document.write(
-            "My favorite fictional dog is " + myDog.name + ".<br>" +
-            myDog.name + " is a " + myDog.breed + ".<br>" +
-            "He is from the television show " + myDog.tvShow + ".<br>" +
-            "Description: " + myDog.notes + "<br>" +
-            "Sound: " + myDog.mySound + "<br><br>"
-        );
 
         // Constructor function used to create dog objects.
         function Dog(name, breed, tvShow, notes, mySound, canTalk) {
 
-            // Store values passed into the constructor.
             this.name = name;
             this.breed = breed;
             this.tvShow = tvShow;
@@ -45,24 +21,31 @@
             this.mySound = mySound;
             this.canTalk = canTalk;
 
-            // Method that displays information about the dog.
+            // Method that uses a conditional statement
+            // to display whether the dog can talk.
             this.myGreeting = function () {
 
-                document.write("<h2>Dog Constructor Object</h2>");
+                let talkMessage = "";
 
-                document.write(
+                if (this.canTalk === true) {
+                    talkMessage = "I can talk!";
+                } else {
+                    talkMessage = "I cannot talk.";
+                }
+
+                return (
                     "Hello, my name is " + this.name + ".<br>" +
                     "I am a " + this.breed + ".<br>" +
                     "I am from " + this.tvShow + ".<br>" +
                     "About me: " + this.notes + "<br>" +
                     "My sound is: " + this.mySound + "<br>" +
-                    "Can I talk? " + this.canTalk + "."
+                    talkMessage
                 );
             };
         }
 
-        // Create a new dog object using the constructor.
-        let myDogConst = new Dog(
+        // Create two dog objects using the constructor.
+        let courage = new Dog(
             "Courage",
             "Beagle",
             "Courage the Cowardly Dog",
@@ -71,8 +54,57 @@
             true
         );
 
-        // Call the object's method.
-        myDogConst.myGreeting();
+        let scooby = new Dog(
+            "Scooby-Doo",
+            "Great Dane",
+            "Scooby-Doo, Where Are You!",
+            "A large dog who helps his friends solve mysteries.",
+            "Ruh-roh! I sound nervous, but I always help the gang.",
+            true
+        );
+
+        // Display each dog object's properties and values using for...in loops.
+        document.write("<h2>Available Dog Objects</h2>");
+
+        document.write("<h3>Courage</h3>");
+        for (let property in courage) {
+
+            if (typeof courage[property] !== "function") {
+                document.write(property + ": " + courage[property] + "<br>");
+            }
+        }
+
+        document.write("<h3>Scooby-Doo</h3>");
+        for (let property in scooby) {
+
+            if (typeof scooby[property] !== "function") {
+                document.write(property + ": " + scooby[property] + "<br>");
+            }
+        }
+
+        // Ask the user to select one dog by typing the dog's name.
+        let selectedDog = prompt(
+            "Type the name of one dog: Courage or Scooby-Doo"
+        );
+
+        // Make the user's input easier to compare.
+        selectedDog = selectedDog.toLowerCase();
+
+        // Display the selected dog's greeting or an error message.
+        document.write("<h2>Selected Dog</h2>");
+
+        if (selectedDog === "courage") {
+
+            document.write("<p>" + courage.myGreeting() + "</p>");
+
+        } else if (selectedDog === "scooby-doo" || selectedDog === "scooby") {
+
+            document.write("<p>" + scooby.myGreeting() + "</p>");
+
+        } else {
+
+            document.write("<p>Error: The dog you selected does not exist.</p>");
+        }
 
     </script>
 
