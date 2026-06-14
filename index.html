@@ -2,102 +2,77 @@
 <html>
 
 <head>
-    <title>Week 4 Tip Calculator</title>
+    <title>Week 5 JavaScript Objects</title>
 </head>
 
 <body>
 
-    <h1>Week 4 Tip Calculator</h1>
+    <h1>Week 5 JavaScript Objects</h1>
 
     <script>
 
-        // Function to verify that the user entered
-        // a valid service quality.
-        function validateServiceQuality(serviceQuality) {
+        // Create a literal object using information
+        // about a fictional dog from animated television.
+        let myDog = {
 
-            return serviceQuality === "great" ||
-                   serviceQuality === "ok" ||
-                   serviceQuality === "poor";
-        }
+            name: "Courage",
+            breed: "Beagle",
+            tvShow: "Courage the Cowardly Dog",
+            notes: "A nervous dog who constantly protects his owners from strange creatures and dangers.",
+            mySound: "I may be scared of everything, but I will still protect my family."
 
-        // Function to verify that the service amount
-        // is between $5.00 and $500.00.
-        function validateServiceAmount(serviceAmount) {
+        };
 
-            return serviceAmount >= 5 && serviceAmount <= 500;
-        }
-
-        // Function to calculate the tip amount
-        // based on the service quality.
-        function calculateTip(serviceAmount, serviceQuality) {
-
-            // Great service receives a 20% tip.
-            if (serviceQuality === "great") {
-                return serviceAmount * 0.20;
-            }
-
-            // OK service receives a 15% tip.
-            if (serviceQuality === "ok") {
-                return serviceAmount * 0.15;
-            }
-
-            // Poor service receives a 10% tip.
-            return serviceAmount * 0.10;
-        }
-
-        // Ask the user to enter the service amount.
-        let serviceAmount = parseFloat(
-            prompt("Enter the service amount between $5.00 and $500.00:")
-        );
-
-        // Ask the user to enter the service quality.
-        let serviceQuality = prompt(
-            "Enter service quality (great, ok, or poor):"
-        ).toLowerCase();
-
-        // Check that a valid service quality was entered.
-        if (!validateServiceQuality(serviceQuality)) {
-
-            document.write("<h2>Error</h2>");
-            document.write("Invalid service quality entered.");
-
-            throw new Error("Invalid service quality");
-        }
-
-        // Check that a valid service amount was entered.
-        if (!validateServiceAmount(serviceAmount)) {
-
-            document.write("<h2>Error</h2>");
-            document.write("Invalid service amount entered.");
-
-            throw new Error("Invalid service amount");
-        }
-
-        // Call the function to calculate the tip.
-        let tipAmount = calculateTip(
-            serviceAmount,
-            serviceQuality
-        );
-
-        // Display the results to the webpage.
-        document.write("<h2>Tip Recommendation</h2>");
+        // Display the values stored in the object literal.
+        document.write("<h2>Dog Object Literal</h2>");
 
         document.write(
-            "Service Amount: $" +
-            serviceAmount.toFixed(2) +
-            "<br><br>"
+            "My favorite fictional dog is " + myDog.name + ".<br>" +
+            myDog.name + " is a " + myDog.breed + ".<br>" +
+            "He is from the television show " + myDog.tvShow + ".<br>" +
+            "Description: " + myDog.notes + "<br>" +
+            "Sound: " + myDog.mySound + "<br><br>"
         );
 
-        document.write(
-            "Service Quality: " +
-            serviceQuality +
-            "<br><br>"
+        // Constructor function used to create dog objects.
+        function Dog(name, breed, tvShow, notes, mySound, canTalk) {
+
+            // Store values passed into the constructor.
+            this.name = name;
+            this.breed = breed;
+            this.tvShow = tvShow;
+            this.notes = notes;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            // Method that displays information about the dog.
+            this.myGreeting = function () {
+
+                document.write("<h2>Dog Constructor Object</h2>");
+
+                document.write(
+                    "Hello, my name is " + this.name + ".<br>" +
+                    "I am a " + this.breed + ".<br>" +
+                    "I am from " + this.tvShow + ".<br>" +
+                    "About me: " + this.notes + "<br>" +
+                    "My sound is: " + this.mySound + "<br>" +
+                    "Can I talk? " + this.canTalk + "."
+                );
+            };
+        }
+
+        // Create a new dog object using the constructor.
+        let myDogConst = new Dog(
+            "Courage",
+            "Beagle",
+            "Courage the Cowardly Dog",
+            "A nervous dog who constantly protects his owners from strange creatures and dangers.",
+            "I may be scared of everything, but I will still protect my family.",
+            true
         );
 
-        document.write(
-            "Recommended Tip: $" +
-            tipAmount.toFixed(2)
-        );
+        // Call the object's method.
+        myDogConst.myGreeting();
 
     </script>
 
