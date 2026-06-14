@@ -2,55 +2,102 @@
 <html>
 
 <head>
-    <title>Week 3 JavaScript Loops and Arrays</title>
+    <title>Week 4 Tip Calculator</title>
 </head>
 
 <body>
 
-    <h1>Week 3 JavaScript Loops and Arrays</h1>
+    <h1>Week 4 Tip Calculator</h1>
 
     <script>
 
-        // For loop that counts from 0 to 10 and checks odd or even
-        document.write("<h2>Odd and Even Numbers</h2>");
+        // Function to verify that the user entered
+        // a valid service quality.
+        function validateServiceQuality(serviceQuality) {
 
-        for (let count = 0; count <= 10; count++) {
-            if (count % 2 === 0) {
-                document.write("Count " + count + " is even<br>");
-            } else {
-                document.write("Count " + count + " is odd<br>");
-            }
+            return serviceQuality === "great" ||
+                   serviceQuality === "ok" ||
+                   serviceQuality === "poor";
         }
 
-        // Ask user for a number between 5 and 20
-        let myNum = prompt("Enter a number between 5 and 20:");
+        // Function to verify that the service amount
+        // is between $5.00 and $500.00.
+        function validateServiceAmount(serviceAmount) {
 
-        // Convert user input into a number
-        myNum = parseInt(myNum);
+            return serviceAmount >= 5 && serviceAmount <= 500;
+        }
 
-        // Do While loop that counts from 1 until it equals myNum
-        document.write("<h2>Do While Loop</h2>");
+        // Function to calculate the tip amount
+        // based on the service quality.
+        function calculateTip(serviceAmount, serviceQuality) {
 
-        let loopCounter = 1;
+            // Great service receives a 20% tip.
+            if (serviceQuality === "great") {
+                return serviceAmount * 0.20;
+            }
 
-        do {
-            document.write("Loop counter is " + loopCounter + "<br>");
-            loopCounter++;
-        } while (loopCounter <= myNum);
+            // OK service receives a 15% tip.
+            if (serviceQuality === "ok") {
+                return serviceAmount * 0.15;
+            }
 
-        // Store subjects in an array
-        let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+            // Poor service receives a 10% tip.
+            return serviceAmount * 0.10;
+        }
 
-        // Display array values using forEach()
-        document.write("<h2>Subjects Displayed with forEach()</h2>");
+        // Ask the user to enter the service amount.
+        let serviceAmount = parseFloat(
+            prompt("Enter the service amount between $5.00 and $500.00:")
+        );
 
-        subjects.forEach(function(subject) {
-            document.write(subject + "<br>");
-        });
+        // Ask the user to enter the service quality.
+        let serviceQuality = prompt(
+            "Enter service quality (great, ok, or poor):"
+        ).toLowerCase();
 
-        // Display array values separated by commas using one statement
-        document.write("<h2>Subjects Separated by Commas</h2>");
-        document.write(subjects.join(", "));
+        // Check that a valid service quality was entered.
+        if (!validateServiceQuality(serviceQuality)) {
+
+            document.write("<h2>Error</h2>");
+            document.write("Invalid service quality entered.");
+
+            throw new Error("Invalid service quality");
+        }
+
+        // Check that a valid service amount was entered.
+        if (!validateServiceAmount(serviceAmount)) {
+
+            document.write("<h2>Error</h2>");
+            document.write("Invalid service amount entered.");
+
+            throw new Error("Invalid service amount");
+        }
+
+        // Call the function to calculate the tip.
+        let tipAmount = calculateTip(
+            serviceAmount,
+            serviceQuality
+        );
+
+        // Display the results to the webpage.
+        document.write("<h2>Tip Recommendation</h2>");
+
+        document.write(
+            "Service Amount: $" +
+            serviceAmount.toFixed(2) +
+            "<br><br>"
+        );
+
+        document.write(
+            "Service Quality: " +
+            serviceQuality +
+            "<br><br>"
+        );
+
+        document.write(
+            "Recommended Tip: $" +
+            tipAmount.toFixed(2)
+        );
 
     </script>
 
